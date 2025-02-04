@@ -34,12 +34,15 @@ resource "azurerm_linux_virtual_machine" "vmlinux" {
   resource_group_name = azurerm_resource_group.vmlinuxrg.name
   location            = azurerm_resource_group.vmlinuxrg.location
   size                = "Standard_F2"
-  admin_usernames      = var.adminuser
+  admin_username      = "root"
   network_interface_ids = [
     azurerm_network_interface.interface.id,
   ]
 
- admin_usernames = var.adminuser
+ admin_ssh_key {
+    username   = "root"
+    public_key = file("~/.ssh/id_rsa.pub")
+  }
 
   os_disk {
     caching              = "ReadWrite"
