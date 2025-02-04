@@ -34,12 +34,12 @@ resource "azurerm_linux_virtual_machine" "vmlinux" {
   resource_group_name = azurerm_resource_group.vmlinuxrg.name
   location            = azurerm_resource_group.vmlinuxrg.location
   size                = "Standard_F2"
-  admin_username      = var.adminuser
+  admin_usernames      = var.adminuser
   network_interface_ids = [
     azurerm_network_interface.interface.id,
   ]
 
- admin_username = var.adminuser
+ admin_usernames = var.adminuser
 
   os_disk {
     caching              = "ReadWrite"
