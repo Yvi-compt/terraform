@@ -6,33 +6,33 @@ resource "azurerm_resource_group" "vmlinuxrg" {
 resource "azurerm_virtual_network" "vnet" {
   name                = "vnetwork"
   address_space       = ["192.168.0.0/16"]
-  location            = azurerm_resource_group.example.location
-  resource_group_name = azurerm_resource_group.example.name
+  location            = azurerm_resource_group.vnet.location
+  resource_group_name = azurerm_resource_group.vnet.name
 }
 
 resource "azurerm_subnet" "subneta" {
   name                 = "internal"
-  resource_group_name  = azurerm_resource_group.example.name
-  virtual_network_name = azurerm_virtual_network.example.name
+  resource_group_name  = azurerm_resource_group.subneta.name
+  virtual_network_name = azurerm_virtual_network.subneta.name
   address_prefixes     = ["192.168.2.0/24"]
 }
 
 resource "azurerm_network_interface" "netinterface" {
   name                = "net-interface-nic"
-  location            = azurerm_resource_group.example.location
-  resource_group_name = azurerm_resource_group.example.name
+  location            = azurerm_resource_group.netinterface.location
+  resource_group_name = azurerm_resource_group.netinterface.name
 
   ip_configuration {
     name                          = "internal"
-    subnet_id                     = azurerm_subnet.example.id
+    subnet_id                     = azurerm_subnet.subneta.id
     private_ip_address_allocation = "Dynamic"
   }
 }
 
 resource "azurerm_linux_virtual_machine" "vmlinux" {
   name                = "virtual-machine-linux"
-  resource_group_name = azurerm_resource_group.example.name
-  location            = azurerm_resource_group.example.location
+  resource_group_name = azurerm_resource_group.vmlinux.name
+  location            = azurerm_resource_group.vmlinux.location
   size                = "Standard_F2"
   admin_username      = "adminuser"
   network_interface_ids = [
