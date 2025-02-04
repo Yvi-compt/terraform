@@ -3,14 +3,14 @@ resource "azurerm_resource_group" "vmlinuxrg" {
   location = "eastus"
 }
 
-resource "azurerm_virtual_network" "vmlinuxrg" {
+resource "azurerm_virtual_network" "vnet" {
   name                = "vnetwork"
   address_space       = ["192.168.0.0/16"]
   location            = azurerm_resource_group.vmlinuxrg.location
   resource_group_name = azurerm_resource_group.vmlinuxrg.name
 }
 
-resource "azurerm_subnet" "subnneta" {
+resource "azurerm_subnet" "subneta" {
   name                 = "internal"
   resource_group_name  = azurerm_resource_group.vmlinuxrg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
