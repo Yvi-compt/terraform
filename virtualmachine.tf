@@ -34,7 +34,7 @@ resource "azurerm_linux_virtual_machine" "vmlinux" {
   resource_group_name = azurerm_resource_group.vmlinuxrg.name
   location            = azurerm_resource_group.vmlinuxrg.location
   size                = "Standard_F2"
-  admin_username      = var.admin-user
+  admin_username      = "adminuser"
   network_interface_ids = [
     azurerm_network_interface.interface.id,
   ]
