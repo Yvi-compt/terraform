@@ -39,7 +39,7 @@ resource "azurerm_linux_virtual_machine" "vmlinux" {
     azurerm_network_interface.interface.id,
   ]
 
-  admin_username      = var.admin-user
+  admin_username      = admin-user
 
   os_disk {
     caching              = "ReadWrite"
