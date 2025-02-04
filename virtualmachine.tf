@@ -39,7 +39,10 @@ resource "azurerm_linux_virtual_machine" "vmlinux" {
     azurerm_network_interface.interface.id,
   ]
 
-  username      = var.admin-user
+  admin_ssh_key {
+    username   = "adminuser"
+    public_key = file("/home/.ssh/id_rsa.pub")
+  }
 
   os_disk {
     caching              = "ReadWrite"
