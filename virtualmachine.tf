@@ -41,7 +41,8 @@ resource "azurerm_linux_virtual_machine" "vmlinux" {
 
  admin_ssh_key {
     username   = "root"
-    public_key = file("~/.ssh/id_rsa.pub")
+    ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa
+    public_key = file("/home/your-username/.ssh/id_rsa.pub")
   }
 
   os_disk {
